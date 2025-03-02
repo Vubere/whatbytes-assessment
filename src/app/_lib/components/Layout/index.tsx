@@ -7,7 +7,7 @@ import useWindowSize from "../hooks/use-window-size";
 
 
 export default function AppLayout({ children }: { readonly children: React.ReactNode }) {
-  const [show, setShow] = React.useState(false);
+  const [show, setShow] = React.useState(true);
   const { width } = useWindowSize();
   const sideNavRef = useRef<HTMLElement>(null);
   const hamburgerRef = useRef<HTMLButtonElement>(null);
@@ -15,6 +15,7 @@ export default function AppLayout({ children }: { readonly children: React.React
   useEffect(() => {
     setShow(width >= 768);
   }, [width]);
+
   useEffect(() => {
     if (width < 768 && show) {
       const handleClick = (e: any) => {
