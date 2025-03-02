@@ -26,13 +26,27 @@ export default function Input(InputProps: InputProps) {
     defaultValue,
   });
 
+  const customOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (type === "number") {
+      const isValidNumber = Number(e.target.value);
+      if (isNaN(isValidNumber)) {
+        e.target.value = value;
+        return;
+      }
+      if (e.target.value?.length > 1 && e.target.value?.startsWith("0")) {
+        e.target.value = e.target.value.slice(1);
+      }
+    }
+    return onChange(e);
+  }
+
   return (
     <>
       <input
-        type={type || "text"}
-        className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm mb-1"
+        type={type === "number" ? "text" : type ?? "text"}
+        className="block w-full rounded-md border border-gray-300 h-[35px] focus:border-transparent focus:ring-transparent sm:text-sm mb-1 px-2"
         value={value}
-        onChange={onChange}
+        onChange={customOnChange}
         placeholder={placeholder}
         required={required}
       />
