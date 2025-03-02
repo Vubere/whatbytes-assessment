@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ROUTES } from "../_lib/routes/routes";
+import { ROUTES } from "@/app/_lib/routes";
 
 
 export const metadata: Metadata = {

@@ -421,9 +421,9 @@ type Inputs = {
 }
 
 const schema = yup.object({
-  rank: yup.number().transform((value, originalValue) => (originalValue === "" ? 0 : value)).required("Required | should be number").min(1, "Rank must be higher than 0").nullable(),
-  percentile: yup.number().transform((value, originalValue) => (originalValue === "" ? -1 : value)).required("Required | percentile 0-100").min(0, "Percentile must be between 0 - 100").max(100, "Percentile must be between 0 - 100").nullable(),
-  currentScore: yup.number().transform((value, originalValue) => (originalValue === "" ? -1 : value)).required("Required | score 0-15").min(0, "Current Score must be between 0 - 15").max(15, "Current Score must be between 0 - 15").nullable()
+  rank: yup.number().transform((value, originalValue) => (originalValue === "" ? undefined : value)).required("Required | should be number").min(1, "Rank must be higher than 0").nullable(),
+  percentile: yup.number().transform((value, originalValue) => (originalValue === "" ? undefined : value)).required("Required | percentile 0-100").min(0, "Required | percentile 0-100").max(100, "Required | percentile 0-100").nullable(),
+  currentScore: yup.number().transform((value, originalValue) => (originalValue === "" ? undefined : value)).required("Required | score 0-15").min(0, "Required | score 0-15").max(15, "Required | score 0-15").nullable()
 })
 
 const UpdateScoresModal = ({ isOpen, close, onSubmit, data }: UpdateScoresModalProps) => {
