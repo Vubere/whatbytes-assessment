@@ -18,6 +18,9 @@ export default function AppLayout({ children }: { readonly children: React.React
 
   useEffect(() => {
     if (width < 768 && show) {
+      if (sideNavRef?.current?.classList?.contains("hidden")) {
+        sideNavRef.current?.classList?.remove("hidden");
+      }
       const handleClick = (e: any) => {
         const hamburger = hamburgerRef.current;
         const sideNav = sideNavRef.current;
@@ -63,7 +66,7 @@ export default function AppLayout({ children }: { readonly children: React.React
 
       </header>
       <div className="grid grid-cols-1 md:grid-cols-[240px_1fr] h-[calc(100vh-64px)] overflow-hidden">
-        {show && <aside className="fixed shadow-2xl md:shadow-none left-0 top-0 min-h-[100vh] md:min-h-[calc(100vh-64px)] md:static border-r border-gray-200 bg-white w-[240px] z-[99] pt-[65px] md:pt-0" ref={sideNavRef}>
+        {show && <aside className="fixed shadow-2xl md:shadow-none left-0 top-0 min-h-[100vh] md:min-h-[calc(100vh-64px)] hidden md:block md:static border-r border-gray-200 bg-white w-[240px] z-[99] pt-[65px] md:pt-0" ref={sideNavRef}>
           <nav>
             <ul className="w-full pr-2 pt-[30px]">
               {NavLinks.map((link) => (
