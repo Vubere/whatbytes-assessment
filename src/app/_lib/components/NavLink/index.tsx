@@ -5,21 +5,20 @@ import { usePathname } from "next/navigation";
 interface NavLinkProps {
   title: string;
   link: string;
-  activeIcon?: React.ReactNode;
-  inactiveIcon?: React.ReactNode;
+  icon?: React.ReactNode;
 }
 
-export default function NavLink({ title, link, activeIcon, inactiveIcon }: NavLinkProps) {
+export default function NavLink({ title, link, icon }: NavLinkProps) {
   const pathname = usePathname();
   const isActive = pathname === link;
 
   return (
     <Link href={link}>
-      <span className={`flex items-center gap-x-2 px-4 h-[55px] ${isActive ? "bg-blue-100 rounded-r-full" : ""}`}>
-        <span className="w-[14px] h-[14px] min-h-[14px] min-w-[14px] rounded-full bg-gray-400">
-          {isActive ? activeIcon : inactiveIcon}
+      <span className={`flex items-center gap-x-2 px-4 h-[55px] [&:hover_.link-icon]:text-blue-200 [&:hover_.link-title]:text-blue-200 ${isActive ? "bg-blue-100 rounded-r-full [&_.link-icon]:text-blue-200 " : ""}`}>
+        <span className={`w-[24px] h-[24px] link-icon`}>
+          {icon}
         </span>
-        <span className={`${!isActive ? "text-gray-400 hover:text-blue-200" : "text-blue-300"} text-sm`}>{title}</span>
+        <span className={`link-title ${!isActive ? "text-gray-400 " : "text-blue-300"} text-sm`}>{title}</span>
       </span>
     </Link>
   );

@@ -8,6 +8,11 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import Input from "../_lib/components/Inputs";
 import Portal from "../_lib/components/Portal";
+import rankIcon from "@/assets/icons/award.png";
+import percentileIcon from "@/assets/icons/clipboard.png";
+import correctAnswerIcon from "@/assets/icons/checkmark.png";
+import bulleyesIcon from "@/assets/icons/bulleye.png";
+import analyticIcon from "@/assets/icons/line_chart.png";
 
 import {
   Chart as ChartJS,
@@ -179,21 +184,42 @@ export default function SkillTest() {
             <h3 className="font-bold text-[16px] mb-0 leading-[100%]">Quick statistics</h3>
             <div className="grid grid-cols-1 sm:grid-cols-3">
               <div className="flex items-center gap-2 sm:mr-[-4px] py-4 border-b-2 sm:border-b-0 border-gray-100">
-                <span className="flex rounded-full bg-gray-100 h-[40px] min-h-[40px] w-[40px] min-w-[40px]"></span>
+                <span className="flex rounded-full bg-gray-100 h-[40px] min-h-[40px] w-[40px] min-w-[40px] items-center justify-center">
+                  <Image
+                    src={rankIcon}
+                    alt="rank"
+                    width={30}
+                    height={30}
+                  />
+                </span>
                 <div className="flex flex-col gap-1">
                   <span className="font-bold leading-[100%]">{data.rank}</span>
                   <p className="uppercase font-light leading-[100%] text-[14px] ">Your Rank</p>
                 </div>
               </div>
               <div className="flex items-center gap-2 border-b-2 sm:border-b-0 sm:border-l-2 border-gray-100 sm:pl-2 py-4">
-                <span className="flex rounded-full bg-gray-100 h-[40px] min-h-[40px] w-[40px] min-w-[40px]"></span>
+                <span className="flex rounded-full bg-gray-100 h-[40px] min-h-[40px] w-[40px] min-w-[40px] items-center justify-center">
+                  <Image
+                    src={percentileIcon}
+                    alt="percentile"
+                    width={30}
+                    height={30}
+                  />
+                </span>
                 <div className="flex flex-col gap-1">
                   <span className="font-bold leading-[100%]">{data.percentile}%</span>
                   <p className="uppercase font-light leading-[100%] text-[14px] ">Percentile</p>
                 </div>
               </div>
               <div className="flex gap-2 sm:border-l-2 border-gray-100 sm:pl-2 py-4">
-                <span className="flex rounded-full bg-gray-100 h-[40px] min-h-[40px] w-[40px] min-w-[40px]"></span>
+                <span className="flex rounded-full bg-gray-100 h-[40px] min-h-[40px] w-[40px] min-w-[40px] items-center justify-center">
+                  <Image
+                    src={correctAnswerIcon}
+                    alt="percentile"
+                    width={30}
+                    height={30}
+                  />
+                </span>
                 <div className="flex flex-col gap-1">
                   <span className="font-bold leading-[100%]">{data.currentScore}&nbsp;/&nbsp;15</span>
                   <p className="uppercase font-light leading-[100%] text-[14px] ">Correct Answers</p>
@@ -210,7 +236,14 @@ export default function SkillTest() {
                 </span> which is {data.percentile < 72 ? "lower than " : higher}the average percentile 72% of all the engineers who took this assessment
               </p>
               <div className="w-full flex justify-start sm:justify-end">
-                <span className="flex rounded-full bg-gray-100 h-[40px] min-h-[40px] w-[40px] min-w-[40px]"></span>
+                <span className="flex rounded-full bg-gray-100 h-[40px] min-h-[40px] w-[40px] min-w-[40px] items-center justify-center">
+                  <Image
+                    src={analyticIcon}
+                    alt="chart"
+                    width={30}
+                    height={30}
+                  />
+                </span>
               </div>
             </div>
             <div className="graph w-full h-[200px] sm:h-[250px] md:h-[300px]  min-w-full">
@@ -360,7 +393,14 @@ export default function SkillTest() {
             <div className="flex items-center justify-center">
 
               <div className="w-[120px] !max-w-[120px] h-[120px] !max-h-[120px] relative">
-                <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-gray-100 w-[40px] h-[40px] min-w-[40px] min-h-[40px]"></span>
+                <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-gray-100 w-[40px] h-[40px] min-w-[40px] min-h-[40px] flex items-center justify-center">
+                  <Image
+                    src={bulleyesIcon}
+                    alt="lineChart"
+                    width={30}
+                    height={30}
+                  />
+                </span>
                 <Doughnut
                   data={{
                     labels: ["Score"],
