@@ -365,13 +365,13 @@ export default function SkillTest() {
                   data={{
                     labels: ["Score"],
                     datasets: [{
-                      data: [data.currentScore, 15 - data.currentScore],
+                      data: [15 - data.currentScore, data.currentScore],
                       backgroundColor: [
-                        "#36A2EB",
                         "#fff0",
+                        "#36A2EB",
                       ],
                       borderWidth: 1.4,
-                      rotation: 210,
+                      rotation: 90,
                     }],
 
                   }}
@@ -412,12 +412,6 @@ type UpdateScoresModalProps = {
   close: () => void;
   onSubmit: (data: any) => void;
   data: any;
-}
-
-type Inputs = {
-  rank: number | string | null;
-  percentile: number | string | null;
-  currentScore: number | string | null;
 }
 
 const schema = yup.object({
@@ -465,7 +459,7 @@ const UpdateScoresModal = ({ isOpen, close, onSubmit, data }: UpdateScoresModalP
 
   return (
     <Portal open={isOpen}>
-      <div className="fixed top-0 left-0 w-screen h-screen inset-0 z-50 flex items-center justify-center overflow-auto bg-black/50 ">
+      <div className="fixed top-0 left-0 w-screen h-screen inset-0 z-[106] flex items-center justify-center overflow-auto bg-black/50 ">
         <div className="relative w-[500px] max-w-[90%] bg-white rounded-[8px] p-4">
           <div className="flex justify-between mb-4">
             <h4 className="font-extrabold text-[16px]">Update Scores</h4>
@@ -483,11 +477,12 @@ const UpdateScoresModal = ({ isOpen, close, onSubmit, data }: UpdateScoresModalP
               <div key={input.name} className="flex flex-col sm:flex-row sm:items-center gap-2">
                 <span className="flex items-center justify-center bg-blue-400 text-white rounded-full h-[20px] text-[12px] w-[20px]">{index + 1}</span>
                 <label htmlFor={input.name}> Update your {input.label}</label>
-                <div className="w-[100px] ml-auto">
+                <div className="ml-auto">
                   <Input
                     key={input.name}
                     control={control}
                     name={input.name}
+                    className="w-[100px] !max-w-[100px] block border-blue-200"
                     type={input.type}
                     required={input.required}
                     defaultValue={input.defaultValue}
